@@ -16,12 +16,10 @@ current_devices = m.get_devices(all_devices)  # current device list
 while(1):
     m.db_clear()
 
-    # CRON JOB EVERY 10 SECONDS
-    for i in reversed(range(1, 11)):
+    for i in reversed(range(1, 11)):  # CRON JOB EVERY 10 SECONDS
         time.sleep(1)
 
-    # 1 - GET FAKED DEVICE LIST
-    current_devices = m.get_devices(all_devices)
+    current_devices = m.get_devices(all_devices)  # 1 - GET FAKED DEVICE LIST
 
     # 2 - PUT CURRENT_DEVICES INTO LOCAL DB.CURRENT_LOCAL_DEVICES DB.INSERT
 
@@ -34,16 +32,13 @@ while(1):
     data_object_2 = c.Data(2, m.get_devices(all_devices), datetime.now().strftime(
         "%H:%M:%S"), "Speciality Coffee")
 
-    # CREATE ROW DATA
-    # Collected Data = A list objects that contains data_objects from tools
-    collected_data = [data_object_0, data_object_1, data_object_2]
+    collected_data = [data_object_0, data_object_1, data_object_2]  # ROW DATA
+
     # Create merged row data that contains all records.
     m.create_row_data(collected_data)
 
-    # ELIMINATE DUPLICATE DATA
-    # Display all records
     print("Su an databasede ", len(m.db_get_all()), 'kadar kayit var.')
-    # Elimination of duplicate records.
-    filtered_data = m.eliminate()
-    # Display filtered data
+
+    filtered_data = m.eliminate()  # ELIMINATE DUPLICATE DATA
+
     print("Su an burada ", len(filtered_data), 'kadar device var.')
