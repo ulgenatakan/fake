@@ -1,10 +1,10 @@
-import database
+from .database import db_add_item, db_get_all
 
 
 def create_row_data(row_data):  # Merge Devices from Tools
     for data in row_data:
         for device in data.devices:
-            database.add_item({
+            db_add_item({
                 "tool_id": data.tool_id,
                 "device_id": device.device_id,
                 "mac_number": device.mac_number,
@@ -19,5 +19,5 @@ def filter_dicts(target, key):  # Filter and Remove Duplicate Elements
 
 
 def eliminate():  # Elimination of Duplicate Devices by Mac Number
-    data = database.get_all()
+    data = db_get_all()
     return filter_dicts(data, "mac_number")
