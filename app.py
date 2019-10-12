@@ -18,14 +18,16 @@ all_devices = m.generate()  # initial device list
 while(1):
     d.db_clear()
 
-    for i in reversed(range(1, 11)):  # CRON JOB EVERY 10 SECONDS
-        time.sleep(1)
+    # for i in reversed(range(1, 11)):  # CRON JOB EVERY 10 SECONDS
+    #    time.sleep(1)
 
-    current_devices = m.get_devices(all_devices)  # 1 - GET FAKED DEVICE LIST
-    m.print_devices(current_devices)
-    d.cld_add_list(current_devices)
+    # current_devices = m.get_devices(all_devices)  # 1 - GET FAKED DEVICE LIST
+    # m.print_devices(current_devices)
+
     # 2 - PUT CURRENT_DEVICES INTO LOCAL DB.CURRENT_LOCAL_DEVICES DB.INSERT
-#
+    # d.cld_add_list(current_devices)
+
+    a = d.cld_get_devices()
     # 3 - CREATE A DATA OBJECT (tool_number, current_devices, time , place)
     # COLLECT OTHER DEVICE DATAS -> Database GET  # [TO DO]
     # data_object_0 = c.Data(0, current_devices, datetime.now().strftime(

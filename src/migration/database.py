@@ -45,6 +45,30 @@ def cld_add_list(devices):
             conn.close()
 
 
+def cld_get_devices():
+    """ query data from the vendors table """
+    conn = None
+    try:
+        conn = psycopg2.connect(host="localhost", database="countdb",
+                                user="postgres", password="postgres")
+        cur = conn.cursor()
+        cur.execute("SELECT mac_number FROM current_local_devices")
+        print("The number of parts: ", cur.rowcount)
+        row = cur.fetchone()
+        a = []
+        while row is not None:
+            print(row)
+            a.append(row[0])
+            row = cur.fetchone()
+        return a
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+
 row_database = []
 
 
