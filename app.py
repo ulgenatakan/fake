@@ -3,10 +3,13 @@ import time
 from datetime import datetime
 
 # Created Modules
-import modules as m
+import src.modules as m
+
+# Database Migrations
+import src.migration.database as d
 
 # Creted Classes
-import classes as c
+import src.classes as c
 
 
 all_devices = m.generate()  # initial device list
@@ -14,7 +17,7 @@ current_devices = m.get_devices(all_devices)  # current device list
 
 
 while(1):
-    m.db_clear()
+    d.db_clear()
 
     for i in reversed(range(1, 11)):  # CRON JOB EVERY 10 SECONDS
         time.sleep(1)
@@ -37,7 +40,7 @@ while(1):
     # Create merged row data that contains all records.
     m.create_row_data(collected_data)
 
-    print("Su an databasede ", len(m.db_get_all()), 'kadar kayit var.')
+    print("Su an databasede ", len(d.db_get_all()), 'kadar kayit var.')
 
     filtered_data = m.eliminate()  # ELIMINATE DUPLICATE DATA
 
