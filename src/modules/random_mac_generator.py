@@ -3,15 +3,15 @@ import random
 
 
 class Device:   # Device Object
-    def __init__(self, mac_number, device_id):
+    def __init__(self, mac_number):
         self.mac_number = mac_number
-        self.device_id = device_id
 
 
 # Generate Random Mac Numbers and create device object.
 def generate_devices(n, arr):
     for i in range(n):
-        arr.append(Device(RandMac("00:00:00:00:00:00"), i))
+        str_mac = str(RandMac("00:00:00:00:00:00"))
+        arr.append(Device(str_mac))
 
 
 def select_devices(n, arr):  # Select Random Devices
@@ -26,7 +26,7 @@ def select_devices(n, arr):  # Select Random Devices
 
 def print_devices(arr):  # Print Devices
     for device in arr:
-        print("DEVICE", device.device_id, "- MAC:", device.mac_number)
+        print("- MAC:", device.mac_number)
 
 
 def generate():  # Generate Devices
