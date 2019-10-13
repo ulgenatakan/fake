@@ -1,5 +1,6 @@
 import psycopg2
 import requests
+import json
 
 
 def cld_add_item(mac_number):
@@ -14,26 +15,10 @@ def cld_add_list(devices):
 
 
 def cld_get_devices():
-    conn = None
-    try:
-        conn = psycopg2.connect(host="localhost", database="countdb",
-                                user="postgres", password="postgres")
-        cur = conn.cursor()
-        cur.execute(
-            "SELECT row_to_json(current_local_devices) FROM current_local_devices")
-        row = cur.fetchone()
-
-        a = []
-        while row is not None:
-            a.append(row[0]["mac_number"][1:-1])
-            row = cur.fetchone()
-        return a
-        cur.close()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
-        if conn is not None:
-            conn.close()
+    url = "http://127.0.0.1:8000/current-local/"
+    response = requests.get(url)
+    print(response.text, response.status_code)
+    return json.loads(response.text)
 
 
 def cld_clear():
