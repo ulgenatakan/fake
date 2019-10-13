@@ -6,7 +6,6 @@ def create_row_data(row_data):  # Merge Devices from Tools
         for device in data.devices:
             d.db_add_item({
                 "tool_id": data.tool_id,
-                "device_id": device.device_id,
                 "mac_number": device.mac_number,
                 "time": data.time,
                 "place": data.place,

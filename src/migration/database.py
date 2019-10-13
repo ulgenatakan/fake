@@ -68,6 +68,22 @@ def cld_get_devices():
             conn.close()
 
 
+def cld_clear():
+    conn = None
+    try:
+        conn = psycopg2.connect(host="localhost", database="countdb",
+                                user="postgres", password="postgres")
+        cur = conn.cursor()
+        cur.execute("DELETE FROM current_local_devices")
+        conn.commit()
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
+
 row_database = []
 
 
