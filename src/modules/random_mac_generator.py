@@ -1,17 +1,15 @@
 from randmac import RandMac
 import random
 
-
-class Device:   # Device Object
-    def __init__(self, mac_number):
-        self.mac_number = mac_number
+# Creted Classes
+import src.classes as c
 
 
 # Generate Random Mac Numbers and create device object.
 def generate_devices(n, arr):
     for i in range(n):
         str_mac = str(RandMac("00:00:00:00:00:00"))
-        arr.append(Device(str_mac))
+        arr.append(c.Device(str_mac))
 
 
 def select_devices(n, arr):  # Select Random Devices
